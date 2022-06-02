@@ -15,3 +15,11 @@ model Post {
   title String @db.VarChar(255)
   content String
 }
+
+model Users {
+  id Int @id @default(autoincrement())
+  user String @db.VarChar(255)
+  name String @db.VarChar(100)
+  roll String @db.VarChar(100)
+  pass String @db.VarChar(255)
+}

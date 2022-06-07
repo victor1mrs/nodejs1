@@ -10,6 +10,66 @@
 </head>
 <body>
   <h1>Pagina de inicio</h1>
-  <h2>El usuario conectado es: <%= msg %></h2>
+  <% if (login) { %>
+    <h2>El usuario conectado es: <strong><%= name %></strong></h2>
+    <a href="logout" class="a-logout">Logout</a>
+    <br><br>
+    <form action="/edit" method="POST">
+      <input type="text" name="editname" placeholder="Cambia tu nombre" required>
+      <input type="submit" value="Editar">
+    </form>
+    
+    <!--AGREGAR LISTADO PARA ADQUIRIR PRODUCTOS-->
+    <div class="register-form">
+      <h1>Adquiera un producto</h1>
+      <form action="addprod" method="POST">
+        <label for="name">Nombre del producto</label>
+        <select name="name" id="name" class="select-css">
+          <option value="aguacate" selected>aguacate</option>
+          <option value="banana">banana</option>
+          <option value="cereza" selected>cereza</option>
+          <option value="durazno">durazno</option>
+          <option value="frutilla" selected>frutilla</option>
+          <option value="mandarina">mandarina</option>
+          <option value="pomelo" selected>pomelo</option>
+          <option value="uva">uva</option>
+        </select>
+        <br>
+        <div style="display: inline;">
+          <a href="/" class="btn-cancel">Cancel</a><input type="submit" class="btn-save" value="Save">
+        </div>
+      </form>
+    </div>
+    <br>
+    <!--LISTADO DE MIS PRODUCTOS-->
+    <form action="/deleteprod" method="POST">
+      <div class="register-form">
+        <h1>Mis Productos: </h1><br>
+        <% for(let i=0; i< products.length; i++){ %>
+          <label for=<%= products[i] %>><strong><%= products[i] %></strong></label>
+          <input type="submit" name="name" class="btn-delete" value=<%= products[i] %>><br>
+          
+          <% } %>  
+      </div>
+    </form>
+    
+    <%} else { %>
+      <h1><strong><% name %></strong></h1>
+      <a href="login" class="a-login">Ir al LOGIN</a>
+      <% } %>
+      <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+      <% if(typeof alert != "undefined") { %>
+        <script>
+          Swal.fire({
+            title: '<%= alertTitle %>',
+            text: '<%= alertMessage %>',
+            icon: '<%= alertIcon%>',
+            showConfirmButton: <%= showConfirmButton%>,
+            timer: <%= timer %>
+          }).then(()=>{
+            window.location= '/<%= ruta %>'
+          })
+        </script>
+        <% } %>
 </body>
 </html>

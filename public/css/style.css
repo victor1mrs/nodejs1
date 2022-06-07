@@ -189,3 +189,30 @@ body{
   margin-bottom: 10px;
   box-sizing:border-box;
 }
+
+/* Estilos boton BORRAR*/
+.btn-delete{
+  width: 50%;
+  padding: 15px;
+  background-color: rgb(210, 40, 40);
+  border: 0;
+  box-sizing: border-box;
+  cursor: pointer;
+  font-weight: bold;
+  font-size:medium;
+  color: #ffffff;
+  margin-top: 20px;
+  /* Para dar la apariencia de un boton */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;  
+}
+.btn-delete:hover,.btn-delete:active{
+  color:#fff;
+  background-color: #8a221e;
+  border-color:#8a221e;
+}
+.btn-delete:focus{
+  box-shadow:0 0 0 3px #8a221e;
+}

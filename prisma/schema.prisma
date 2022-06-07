@@ -10,16 +10,27 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Post {
-  id Int @id @default(autoincrement())
-  title String @db.VarChar(255)
-  content String
-}
 
-model Users {
+//model Post {
+//  id Int @id @default(autoincrement())
+//  title String @db.VarChar(255)
+//  content String
+//}
+
+
+
+model User {
   id Int @id @default(autoincrement())
-  user String @db.VarChar(255)
+  user String? @unique @db.VarChar(255)
   name String @db.VarChar(100)
   roll String @db.VarChar(100)
   pass String @db.VarChar(255)
+  products Product[]
+}
+
+model Product {
+  id          Int         @id @default(autoincrement())
+  name        String?     @db.VarChar(255)
+  ownerId   Int
+  owner     User       @relation(fields: [ownerId], references: [id])
 }
